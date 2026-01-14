@@ -1,0 +1,26 @@
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+media/
+staticfiles/
+
+# Python Virtual Env
+venv/
+env/
+.env
+
+# React Native / Node
+node_modules/
+.expo/
+dist/
+web-build/
+.vscode/
+.DS_Store
+
+# Android/iOS Builds (You don't need these tracked for now)
+android/
+ios/

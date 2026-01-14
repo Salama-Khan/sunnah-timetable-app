@@ -1,13 +1,13 @@
-from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import TimeWindow
-from .serializers import TimeWindowSerializer
+from .engine import calculate_sunnah_times 
 
-@api_view(['GET'])  
+@api_view(['GET'])
 def get_schedule(request):
-    windows = TimeWindow.objects.all()
+    lat = float(request.GET.get('lat', 51.5074)) 
+    lng = float(request.GET.get('lng', -0.1278))
+    madhab = request.GET.get('madhab', 'STANDARD')
 
-    serializer = TimeWindowSerializer(windows, many=True)
+    data = calculate_sunnah_times(lat, lng, madhab)
 
-    return Response(serializer.data)
+    return Response(data)
