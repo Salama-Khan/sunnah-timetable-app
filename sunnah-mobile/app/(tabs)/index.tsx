@@ -11,8 +11,8 @@ export default function App() {
   const [errorMsg, setErrorMsg] = useState(null);
   const [isHanafi, setIsHanafi] = useState(true);
 
-  // Replace with your machine's local IP address (e.g., 192.168.1.66)
-  const BASE_URL = 'http://YOUR_LOCAL_IP:8000';
+  // Enter IP address of your device
+  const BASE_URL = 'http://YOURDEVICEIP:8000'; 
 
   useEffect(() => {
     loadSettingsAndFetch();
@@ -67,17 +67,20 @@ export default function App() {
     }
   };
 
+  
   const isNextPrayer = (endTime) => {
     const now = new Date();
     const [hours, minutes] = endTime.split(':');
     const prayerEnd = new Date();
     prayerEnd.setHours(parseInt(hours), parseInt(minutes), 0);
     
+    
     return prayerEnd > now;
   };
 
   return (
     <LinearGradient
+
       colors={['#0f2027', '#203a43', '#2c5364']}
       style={styles.container}
     >
@@ -88,14 +91,14 @@ export default function App() {
           <View>
             <Text style={styles.appTitle}>Sunnah Timetable</Text>
             <Text style={styles.locationText}>
-              {location ? "GPS Active" : "Finding Location..."}
+              {location ? "📍 GPS Active" : "Finding Location..."}
             </Text>
           </View>
 
           <View style={styles.toggleWrapper}>
             <Text style={styles.toggleText}>{isHanafi ? "Hanafi" : "Shafi"}</Text>
             <Switch
-              trackColor={{ false: "#767577", true: "#D4AF37" }} 
+              trackColor={{ false: "#767577", true: "#D4AF37" }} // Gold color
               thumbColor={isHanafi ? "#fff" : "#f4f3f4"}
               onValueChange={toggleMadhab}
               value={isHanafi}
@@ -196,7 +199,7 @@ const styles = StyleSheet.create({
   prayerTime: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#D4AF37',
+    color: '#D4AF37', 
   },
   divider: {
     height: 1,
